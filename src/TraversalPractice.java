@@ -223,6 +223,27 @@ public class TraversalPractice {
      * @return the count of branch nodes in the tree
      */
     public static int max(TreeNode node) {
-        return Integer.MIN_VALUE;
+        int biggest = Integer.MIN_VALUE;
+        if (node == null) {
+            return biggest;
+        }
+
+        if (node.data > biggest) {
+            biggest = node.data;
+        }
+
+        int bigLeft = max(node.left);
+        int bigRight = max(node.right);
+
+        //check to see if left or right are bigger, if true check to see which one is bigger
+        if (bigLeft > biggest || bigRight > biggest) {
+            if (bigLeft > bigRight) {
+                biggest = bigLeft;
+            } else {
+                biggest = bigRight;
+            }
+        }
+        
+        return biggest;
     }
 }
